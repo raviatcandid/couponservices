@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://webservice.en.excentus.com/Items" xmlns:itm="http://webservice.en.excentus.com/Items" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name="Items" nillable="false">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="1" ref="itm:Item"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element> 
+	
+	<xsd:element name="Item">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="Code" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="Dept" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="Units" nillable="false" type="xsd:decimal"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="UnitType" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="ItemPrice" nillable="false" type="xsd:decimal"/>				
+			</xsd:sequence>
+			<xsd:attribute name="type" type="itm:ItemType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:simpleType name="ItemType">
+		<xsd:restriction base="xsd:string">		
+			<xsd:enumeration value="UPC"/>
+    		<xsd:enumeration value="upc"/>
+    		<xsd:enumeration value="PLU"/>
+    		<xsd:enumeration value="plu"/>    		
+    		<xsd:enumeration value="Upc"/>
+    		<xsd:enumeration value="Plu"/>
+    		<xsd:enumeration value="Fuel"/>
+    		<xsd:enumeration value="FUEL"/>
+    		<xsd:enumeration value="fuel"/>
+    		
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

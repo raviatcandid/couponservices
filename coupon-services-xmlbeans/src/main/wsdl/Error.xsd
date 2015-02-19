@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://error.webservice.en.excentus.com/ENWebService/error" xmlns="http://error.webservice.en.excentus.com/ENWebService/error" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="Errors">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" minOccurs="0" ref="Error"/>  
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ErrorDesc" type="xsd:string"/>
+  <xsd:element name="ErrorNo" type="xsd:string"/>
+  <xsd:element name="Error">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="ErrorNo"/>
+        <xsd:element ref="ErrorDesc"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://webservice.en.excentus.com/Tenders" xmlns:ten="http://webservice.en.excentus.com/Tenders" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="Tenders" nillable="false">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="1" name="Tender">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element form="unqualified" name="Type" type="xsd:string"/>
+							<xsd:element form="unqualified" name="CardType" type="xsd:string"/>
+							<xsd:element form="unqualified" name="Amount" type="xsd:decimal"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>		
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

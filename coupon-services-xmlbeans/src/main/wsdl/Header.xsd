@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema elementFormDefault="unqualified" targetNamespace="http://webservice.en.excentus.com/ENWebService/headerRequest" xmlns="http://webservice.en.excentus.com/ENWebService/headerRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	
+	 <!-- include address constructs -->
+  	 		<xsd:annotation>
+			    <xsd:documentation xml:lang="en">
+				      schema for Header,
+				      Excentus, Inc. All rights reserved.
+			    </xsd:documentation>
+  			</xsd:annotation>
+  	
+  	
+				<xsd:element name="Header">
+					<xsd:complexType>
+						<xsd:sequence>
+					 		<xsd:element maxOccurs="1" minOccurs="1" name="AccountNo" nillable="false" type="xsd:string"/>  
+							<xsd:element name="RetailerId" nillable="false" type="xsd:string"/>
+							<xsd:element maxOccurs="1" minOccurs="1" name="SiteId" nillable="false" type="xsd:string"/>
+						    <xsd:element maxOccurs="1" minOccurs="1" name="DateTime" nillable="false" type="xsd:string"/> 
+							<xsd:element name="RegisterId" nillable="false" type="xsd:long"/>
+							<xsd:element maxOccurs="1" minOccurs="1" name="SequenceNumber" nillable="false" type="xsd:long"/>
+							<xsd:element name="Retry" nillable="false" type="xsd:int"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+ 			 
+				
+				 	
+  
+</xsd:schema>

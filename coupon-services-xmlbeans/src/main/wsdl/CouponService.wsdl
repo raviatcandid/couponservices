@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2012. , The Coca-Cola Company, All rights reserved.
+  -->
+
+<wsdl:definitions targetNamespace="http://webservices.icoke.com/v1_0/Coupon"
+                  xmlns:sch0="http://webservices.icoke.com/v1_0/Coupon"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns1="http://beans.webservices.icoke.com/v1_0/Coupon"
+                  xmlns:tns2="http://beans.webservices.icoke.com/v1_0"
+                  xmlns:tns3="http://beans.webservices.icoke.com/ServiceFault"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://beans.webservices.icoke.com/v1_0" xmlns="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="ICokeHeader">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="siteId" nillable="true" type="xs:string"/>
+                        <xs:element name="memberId" nillable="true" type="xs:string"/>
+                        <xs:element name="sessionId" nillable="true" type="xs:string"/>
+                        <xs:element name="ipaddress" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://beans.webservices.icoke.com/v1_0/Coupon" xmlns="http://beans.webservices.icoke.com/v1_0/Coupon">
+            <xs:element name="ValidateCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="processorCode" nillable="true" type="xs:string"/>
+                        <xs:element name="retailerCode" type="xs:string"/>
+                        <xs:element name="cardNumber" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ValidateCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="statusCode" type="xs:string"/>
+                        <xs:element name="statusDescription" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LoadToCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="processorCode" type="xs:string"/>
+                        <xs:element name="retailerCode" type="xs:string"/>
+                        <xs:element name="cardNumber" type="xs:string"/>
+                        <xs:element name="consumerId" nillable="true" type="xs:string"/>
+                        <xs:element name="transactionId" nillable="true" type="xs:string"/>
+                        <xs:element name="couponId" type="xs:string"/>
+                        <xs:element name="couponDescription" nillable="true" type="xs:string"/>
+                        <xs:element name="couponStartDate" nillable="true" type="xs:string"/>
+                        <xs:element name="couponEndDate" nillable="true" type="xs:string"/>
+                        <xs:element name="couponValue" nillable="true" type="xs:string"/>
+                        <xs:element name="channel" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LoadToCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="statusCode" type="xs:string"/>
+                        <xs:element name="statusDescription" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://beans.webservices.icoke.com/ServiceFault" xmlns="http://beans.webservices.icoke.com/ServiceFault">
+            <xs:element name="ServiceFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="errorCode" type="xs:int"/>
+                        <xs:element maxOccurs="1" minOccurs="0" name="errorDescription" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ValidateCardRequest">
+        <wsdl:part element="tns2:ICokeHeader" name="iCokeHeader"/>
+        <wsdl:part element="tns1:ValidateCardRequest" name="ValidateCardRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateCardResponse">
+        <wsdl:part element="tns2:ICokeHeader" name="iCokeHeader"/>
+        <wsdl:part element="tns1:ValidateCardResponse" name="ValidateCardResponse"/>
+    </wsdl:message>
+    <wsdl:message name="LoadToCardRequest">
+        <wsdl:part element="tns2:ICokeHeader" name="iCokeHeader"/>
+        <wsdl:part element="tns1:LoadToCardRequest" name="LoadToCardRequest"/>
+    </wsdl:message>
+    <wsdl:message name="LoadToCardResponse">
+        <wsdl:part element="tns2:ICokeHeader" name="iCokeHeader"/>
+        <wsdl:part element="tns1:LoadToCardResponse" name="LoadToCardResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ServiceFault">
+        <wsdl:part element="tns3:ServiceFault" name="ServiceFault"/>
+    </wsdl:message>
+    <wsdl:portType name="Coupon">
+        <wsdl:operation name="ValidateCard">
+            <wsdl:input message="sch0:ValidateCardRequest" name="ValidateCardRequest"/>
+            <wsdl:output message="sch0:ValidateCardResponse" name="ValidateCardResponse"/>
+            <wsdl:fault message="sch0:ServiceFault" name="ServiceFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="LoadToCard">
+            <wsdl:input message="sch0:LoadToCardRequest" name="LoadToCardRequest"/>
+            <wsdl:output message="sch0:LoadToCardResponse" name="LoadToCardResponse"/>
+            <wsdl:fault message="sch0:ServiceFault" name="ServiceFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CouponServiceSoap11" type="sch0:Coupon">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ValidateCard">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="ValidateCardRequest">
+                <soap:header message="sch0:ValidateCardRequest" part="iCokeHeader" use="literal"/>
+                <soap:body parts="ValidateCardRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ValidateCardResponse">
+                <soap:header message="sch0:ValidateCardResponse" part="iCokeHeader" use="literal"/>
+                <soap:body parts="ValidateCardResponse" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceFault">
+                <soap:fault name="ServiceFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="LoadToCard">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="LoadToCardRequest">
+                <soap:header message="sch0:LoadToCardRequest" part="iCokeHeader" use="literal"/>
+                <soap:body parts="LoadToCardRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="LoadToCardResponse">
+                <soap:header message="sch0:LoadToCardResponse" part="iCokeHeader" use="literal"/>
+                <soap:body parts="LoadToCardResponse" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ServiceFault">
+                <soap:fault name="ServiceFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CouponService">
+        <wsdl:port binding="sch0:CouponServiceSoap11" name="CouponServiceSoap11">
+            <soap:address location="http://216.64.211.32:80/coupons/soap"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

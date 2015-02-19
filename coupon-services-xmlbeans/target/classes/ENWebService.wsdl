@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wsdl:definitions name="ENWebService"
+                  targetNamespace="http://webservice.en.excentus.com/ENWebService/"
+                  xmlns:ens="http://webservice.en.excentus.com/ENWebService/"
+                  xmlns:rireq="http://request.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceRequest"
+                  xmlns:rires="http://response.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceResponse"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://webservice.en.excentus.com/ENWebService/">
+	      <xsd:import namespace="http://request.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceRequest"
+                      schemaLocation="RewardIssuanceRequest.xsd"/>
+		  <xsd:import namespace="http://response.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceResponse"
+                      schemaLocation="RewardIssuanceResponse.xsd"/>
+     </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="rewardIssuanceResponse">
+    <wsdl:part element="rires:RewardIssuanceResponse" name="rewardIssuanceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rewardIssuanceRequest">
+    <wsdl:part element="rireq:RewardIssuanceRequest" name="rewardIssuanceRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ENWebService">
+    <wsdl:operation name="rewardIssuance">
+      <wsdl:input message="ens:rewardIssuanceRequest" name="rewardIssuanceRequest">
+    </wsdl:input>
+      <wsdl:output message="ens:rewardIssuanceResponse" name="rewardIssuanceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ENWebServiceSOAP" type="ens:ENWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="rewardIssuance">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="rewardIssuanceRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="rewardIssuanceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ENWebService">
+    <wsdl:port binding="ens:ENWebServiceSOAP" name="ENWebServiceSOAP">
+      <soap:address location="http://www.xperks.net:80/ENWeb/services/ENWebServiceSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://response.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceResponse" xmlns:error="http://error.webservice.en.excentus.com/ENWebService/error" xmlns:header="http://webservice.en.excentus.com/ENWebService/headerRequest" xmlns:rires="http://response.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		 
+   	<xsd:import namespace="http://webservice.en.excentus.com/ENWebService/headerRequest" schemaLocation="Header.xsd"/>
+	<xsd:import namespace="http://error.webservice.en.excentus.com/ENWebService/error" schemaLocation="Error.xsd"/>
+    
+	<xsd:element name="RewardIssuanceResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="header:Header"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="ReferenceId" type="xsd:string"/> 				
+				<xsd:element maxOccurs="1" minOccurs="0" ref="error:Errors"/>
+		    	<xsd:element maxOccurs="1" minOccurs="0" name="RewardSummary">
+					<xsd:complexType>
+						<xsd:sequence>
+						<xsd:element name="RewardEarned" type="xsd:decimal"/>
+						<xsd:element ref="rires:Limit"/>
+						<xsd:element name="RewardExpirationDate" type="xsd:string"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="0" name="OfferSummary" nillable="false">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" ref="rires:Offer"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>						 
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Offer">   
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" name="Name" nillable="true" type="xsd:string"/>
+				<xsd:element form="unqualified" name="StartPurchaseBalance" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="EndPurchaseBalance" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="RewardEligibleAmt" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="MaxReached" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" name="PurchaseRequirement" nillable="false" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="RewardAmt" nillable="false" type="xsd:decimal"/>
+			</xsd:sequence>   
+		</xsd:complexType>
+	</xsd:element>	
+	
+	<xsd:element name="Limit">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Type" type="xsd:string"/>
+				<xsd:element name="Value" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+</xsd:schema>

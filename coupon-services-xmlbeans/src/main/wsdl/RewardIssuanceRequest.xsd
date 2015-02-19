@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema elementFormDefault="qualified"
+            targetNamespace="http://request.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceRequest"
+            xmlns:header="http://webservice.en.excentus.com/ENWebService/headerRequest"
+            xmlns:itm="http://webservice.en.excentus.com/Items"
+            xmlns:off="http://webservice.en.excentus.com/Offers"
+            xmlns:rireq="http://request.issuance.webservice.en.excentus.com/ENWebRewardIssuanceService/RewardIssuanceRequest"
+            xmlns:ten="http://webservice.en.excentus.com/Tenders"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <xsd:import namespace="http://webservice.en.excentus.com/ENWebService/headerRequest" schemaLocation="Header.xsd"/>
+    <xsd:import namespace="http://webservice.en.excentus.com/Offers" schemaLocation="Offers.xsd"/>
+    <xsd:import namespace="http://webservice.en.excentus.com/Items" schemaLocation="Items.xsd"/>
+    <xsd:import namespace="http://webservice.en.excentus.com/Tenders" schemaLocation="Tenders.xsd"/>
+
+	<xsd:element name="RewardIssuanceRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="header:Header"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="ReferenceId" type="xsd:string"/> 
+				<xsd:element form="unqualified" name="Transaction" nillable="false">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="BatchId" nillable="false" type="xsd:string"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="ProcessingType" nillable="true" type="xsd:string"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="Offline" nillable="true" type="xsd:boolean"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="LocalTransactionId" nillable="false" type="xsd:string"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="TotalTransactionAmount" nillable="false" type="xsd:decimal"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="TaxAmount" nillable="false" type="xsd:decimal"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="RewardEligibleAmount" nillable="false" type="xsd:decimal"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="TotalDiscountIssued" nillable="false" type="xsd:decimal"/>
+							<xsd:element maxOccurs="1" minOccurs="1" ref="ten:Tenders"/>
+							<xsd:element maxOccurs="1" minOccurs="0" ref="rireq:Details"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Details">
+		<xsd:complexType>
+			<xsd:sequence>
+			   <xsd:element maxOccurs="1" minOccurs="0" ref="itm:Items"/>
+			   <xsd:element maxOccurs="1" minOccurs="0" ref="off:Offers"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+								
+</xsd:schema>

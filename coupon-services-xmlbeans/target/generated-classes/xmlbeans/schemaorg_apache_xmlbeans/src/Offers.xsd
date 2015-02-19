@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://webservice.en.excentus.com/Offers" xmlns:off="http://webservice.en.excentus.com/Offers" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name="Offers" nillable="false">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" ref="off:Offer"/>				
+				<xsd:element maxOccurs="unbounded" minOccurs="0" ref="off:BasketOffer"/>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" ref="off:MVPOffer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element> 
+	
+	<xsd:element name="Offer">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" name="OfferDesc" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="StartDate" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="EndDate" type="xsd:string"/>
+				<xsd:element form="unqualified" name="Sponsor" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="Max" nillable="false" type="xsd:decimal"/>
+				<xsd:element ref="off:OfferDetails"/>
+				<xsd:element ref="off:Rewards"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required"/>
+			<xsd:attribute name="type" type="off:OfferType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:simpleType name="OfferType">
+	
+		<xsd:restriction base="xsd:string">		
+			<xsd:enumeration value="local"/>
+    		<xsd:enumeration value="network"/>
+    		<xsd:enumeration value="Local"/>
+    		<xsd:enumeration value="Network"/>    		
+		</xsd:restriction>
+	
+	</xsd:simpleType>
+	
+	<xsd:element name="OfferDetails">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="Type" nillable="false" type="off:OfferDetailType"/>
+				<xsd:element form="unqualified" name="Code" type="xsd:string"/>
+				<xsd:element form="unqualified" name="UnitType" type="xsd:string"/>
+				<xsd:element form="unqualified" name="Units" type="xsd:decimal"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="GroupCode" type="xsd:string"/>				
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="UnitsQualified" type="xsd:decimal"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:simpleType name="OfferDetailType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="upc"/>
+			<xsd:enumeration value="UPC"/>
+    		<xsd:enumeration value="plu"/>
+    		<xsd:enumeration value="PLU"/>
+    		<xsd:enumeration value="dept"/>
+    		<xsd:enumeration value="DEPT"/>
+    		<xsd:enumeration value="group"/>  
+    		<xsd:enumeration value="GROUP"/>
+    		<xsd:enumeration value="Upc"/>
+    		<xsd:enumeration value="Plu"/>
+    		<xsd:enumeration value="Dept"/>
+    		<xsd:enumeration value="Group"/>
+    		<xsd:enumeration value="Fuel"/>
+    		<xsd:enumeration value="FUEL"/>
+    		<xsd:enumeration value="fuel"/> 
+      </xsd:restriction>
+	</xsd:simpleType>
+																
+	<xsd:element name="BasketOffer">   
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" name="PurchaseBalance" type="xsd:decimal"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="StartDate" type="xsd:string"/>
+				<xsd:element form="unqualified" maxOccurs="1" minOccurs="1" name="EndDate" type="xsd:string"/>
+				<xsd:element form="unqualified" name="BasketSize" nillable="false" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="BalanceStatus" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" name="BasketMin" nillable="false" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="BasketMax" nillable="false" type="xsd:decimal"/>
+				<xsd:element ref="off:Rewards"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required"/>
+			<xsd:attribute name="type" type="off:BasketOfferType" use="required"/>   
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+	<xsd:element name="MVPOffer">   
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" name="StartingBalance" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="EndingBalance" type="xsd:decimal"/>
+				<xsd:element form="unqualified" name="QualifiedUnits" type="xsd:decimal"/>				
+				<xsd:element form="unqualified" minOccurs="0" name="LockedTokenId" nillable="true" type="xsd:string"/>
+				<xsd:element form="unqualified" name="RewardIssued" type="xsd:boolean"/>				
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required"/>		
+			<xsd:attribute name="RequiredUnits" type="xsd:decimal" use="required"/>  
+			<xsd:attribute form="unqualified" name="ExpirationDays" type="xsd:decimal"/>	   
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+	<xsd:simpleType name="BasketOfferType">
+  		<xsd:restriction base="xsd:string">
+	    	<xsd:enumeration value="local"/>
+	    	<xsd:enumeration value="Local"/>
+	    	<xsd:enumeration value="LOCAL"/>
+	    	<xsd:enumeration value="network"/>
+	    	<xsd:enumeration value="Network"/>
+	    	<xsd:enumeration value="NETWORK"/>
+	    	<xsd:enumeration value="networkSVB"/>
+	    	<xsd:enumeration value="NetworkSVB"/>
+	    	<xsd:enumeration value="NETWORKSVB"/>
+	    	
+	    </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:element name="Rewards" nillable="false">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" name="Reward">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element form="unqualified" name="Value" nillable="false" type="xsd:decimal"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="Sponsor" nillable="false" type="xsd:string"/>
+							<xsd:element form="unqualified" maxOccurs="1" minOccurs="0" name="ExpirationDate" type="xsd:string"/>
+							<xsd:element form="unqualified" name="RewardIssued" nillable="false" type="xsd:decimal"/>
+							<xsd:element form="unqualified" name="RewardUnits" nillable="false" type="xsd:decimal"/>
+							<xsd:element maxOccurs="1" minOccurs="0" ref="off:Limit"/>													
+						</xsd:sequence>
+						<xsd:attribute name="id" type="xsd:string" use="required"/>
+						<xsd:attribute name="type" type="off:RewardType" use="required"/>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="RewardType">
+		<xsd:restriction base="xsd:string">		
+			<xsd:enumeration value="CPG"/>
+    		<xsd:enumeration value="cpg"/>
+    		<xsd:enumeration value="PPG"/>
+    		<xsd:enumeration value="ppg"/>    		
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:element name="Limit">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element form="unqualified" name="Type" nillable="false" type="xsd:string"/>
+				<xsd:element form="unqualified" name="Value" nillable="false" type="xsd:decimal"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
